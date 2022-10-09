@@ -3,7 +3,7 @@ import sh
 def linuxTools(file_name):
     dump_file = open(r"results.txt", 'a')
 
-    file = ["file:", sh.file(file_name))]
+    file = ["file:", sh.file(file_name)]
     dump_file.writelines[file]
 
     # might add OALabs/hashdb
