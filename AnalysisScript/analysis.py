@@ -1,5 +1,4 @@
 from sys import argv
-import gui.py
 from windows.py import windowsTools
 from linux.py import linuxTools
 import gui.py
