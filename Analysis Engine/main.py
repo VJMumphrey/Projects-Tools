@@ -1,27 +1,44 @@
 #!/usr/bin/python3
-import VTlookup
-import FileHandle
+from vtlookup import lookup
+from filehandle import File
+import os
+from unpacme import unpac
 
 VTDoclink = "https://developers.virustotal.com/reference/overview"
 # since most of the tools are already in REMnux
 REMnuxlink = "https://docs.remnux.org/"
-def main ():
-    """
-    CLI Analysis Engine that will perform a myriad of basic analysis and malware handling in order to speed up malware analysis
-        - VirusTotal lookup using the api library
-        - Pull strings and rank them Using String Sifter (Flare)
-        - FLoss to extract potentially more strings
-        - Use yara rules to classify rules
-        - Develop the yara rules for the sample
-        - generate hashes that aren't pulled from VirusTotal
-        - Yara Rules to identify common malicious capabilities
-        - Re-search.py tp search for possible regex and sus artifacts
-        - ClamAV
-        - Defang the malare by adding ".malw" to the file
-        - package it in .zip folder for transport with password
 
-    Dump files into directory named with time and date and malware name
-        - store the info from virus total and defanged sample for further in-depth analysis later
+def setup() -> None:
+    # TODO create a directory for the malware and its results if not already created
+    path = os.path.join(".", "DumpFolder")
+    os.mkdir(path)
 
+def main () -> int:
     """
+    create and run the shell like interface
+    - input system with specific commands
+        - startup (warns if DumpFolder is already created)
+        - input file
+        - displayResults from the scan in a table
+        - save the results
+        - help menu and such for the shell
+        - exit the shell
+    """
+
+    # filename comes from input in the shell
+    file = File("test") 
+    lookup(file)
+
+    # TODO packed will come from the json response in vtlookup
+    if (packed == True):
+       unpac(file) 
+    
+    file.neuterFile()
+    file.createFolder()
+    
+    return 0;
+
+    
+
+    
 
