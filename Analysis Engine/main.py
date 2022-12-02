@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+
 from vtlookup import lookup
 from filehandle import File
-import os
 from unpacme import unpac
+import signature
+import os
 
 VTDoclink = "https://developers.virustotal.com/reference/overview"
 # since most of the tools are already in REMnux
@@ -13,7 +15,14 @@ def setup() -> None:
     path = os.path.join(".", "DumpFolder")
     os.mkdir(path)
 
-def main () -> int:
+def shellStartup() -> None:
+    # starts the shell and the multithreaded system
+    # runs the other functions with the given info and commands from the shell
+    
+    # TODO create a banner for the shell on startup
+    pass
+
+def main ():
     """
     create and run the shell like interface
     - input system with specific commands
@@ -24,6 +33,7 @@ def main () -> int:
         - help menu and such for the shell
         - exit the shell
     """
+    shellStartup()
 
     # filename comes from input in the shell
     file = File("test") 
@@ -36,9 +46,3 @@ def main () -> int:
     file.neuterFile()
     file.createFolder()
     
-    return 0;
-
-    
-
-    
-
