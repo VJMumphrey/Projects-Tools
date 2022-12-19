@@ -6,12 +6,13 @@ This project is something that I am going to try and work on. My goal is to even
 main:
 create and run the shell like interface
 - input system with specific commands
-    - startup (warns if DumpFolder is already created)
-    - input file
+    - setup (warns if Dumpdir is already created)
+	- setup (create DataBase if not already done so)
+	- create a banner for the shell on startup
 	- displayResults from the scan in a table
 	- save the results
+	- build out shell system
 	- help menu and such for the shell
-	- exit the shell
 	- take input from vtlookup to help and determine if the sample is packed
 
 filehandle:
@@ -23,7 +24,7 @@ depositFile
 
 neuterFile
 	- test to make sure it is working properly
-	- remove executeability on the different OS?
+	- remove executeability on the different operating systems?
 
 createFolder
 	- fix so that the time is appended with month/day/year/time
@@ -38,4 +39,5 @@ signature:
 	- (later) implement hashing system to determine if files are simular or the same
 	- used to build database of malware geneology of functions and capabilities
 	- hashing of functions? need to find a way of doing this without getting thrown off from obfuscation
-	- take look into incorporating Keystone Capstone and unicorn engines?
+	- test out engines. will only be for x64 arch for now
+	- seperate files and calls for different archs

@@ -21,7 +21,6 @@ class File ():
         path = os.path.join(".", self.name + time.localtime())
         os.mkdir(path)
 
-
     def neuterFile(self) -> None:
         # defangs the malware by adding a file exenstion to it
         os.rename(self.name, self.name + ".malw")

@@ -1,23 +1,20 @@
-from __future__ import print_function
-import json
+import vt
 import hashlib
-from virus_total_apis import PublicApi as VirusTotalPublicApi
 
-# template for a json response from the VT docs
-def lookup(file) -> str:
-    API_KEY = 'API KEY HERE'
+# used to lookup info about a file
+# scan it if info is old or not existent
+def lookupFile(malw):
 
-    # send the file hash as the identifier
-    virusEncoded = file.encode('utf-8')
-    VIRUS_MD5 = hashlib.md5(virusEncoded).hexdigest
+    client = vt.Client("API")
+    file = client.get_object(malw.path) 
 
-    vt = VirusTotalPublicApi(API_KEY)
+    client.close()
 
-    response = vt.get_file_report(VIRUS_MD5)
-
-    # return to main for processing
-    report = json.dumps(response, sort_keys=False, indent=4)
+# used to lookup a url
+# called by user input in shell
+def lookupUrl(url):
+    pass
     
-    print(report)
-
-    return report
+# used to lookup a domain
+def lookupDomain(domain):
+    pass
