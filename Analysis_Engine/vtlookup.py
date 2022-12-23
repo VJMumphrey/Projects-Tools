@@ -18,3 +18,7 @@ def lookupUrl(url):
 # used to lookup a domain
 def lookupDomain(domain):
     pass
+
+# send the file to be scanned and wait for results
+def scanFile(malw):
+    pass

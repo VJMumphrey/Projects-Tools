@@ -4,15 +4,26 @@ import json
 
 class File ():
     
-    def __init__(self, name) -> None:
+    def __init__(self, path) -> None:
         self.name = name
+        self.path = path
 
     # acessors and mutators
+    @property
+    def setName(self) -> str:
+        return self._name
+
+    @property
+    def setPath(self) -> str:
+        return self.path
+
+    @setName.setter
     def getName(self) -> None:
         self._name = self.name
 
-    def setName(self) -> str:
-        return self._name
+    @setPath.setter
+    def getPath(self) -> None:
+        self._path = self.path
 
     # modules
     def createFolder(self) -> None:
