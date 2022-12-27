@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
-from vtlookup import *
-from filehandle import File
-from unpacme import unpac
-from signature import *
+from imports.vtlookup import *
+from imports.filehandle import File
+from imports.unpacme import unpac
+from imports.signature import *
 import os
 
 # since most of the tools are already in REMnux

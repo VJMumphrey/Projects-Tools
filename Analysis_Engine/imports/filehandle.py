@@ -4,11 +4,11 @@ import json
 
 class File ():
     
-    def __init__(self, path) -> None:
+    def __init__(self, name, path) -> None:
         self.name = name
         self.path = path
 
-    # acessors and mutators
+    # -- acessors and mutators --
     @property
     def setName(self) -> str:
         return self._name
@@ -25,7 +25,8 @@ class File ():
     def getPath(self) -> None:
         self._path = self.path
 
-    # modules
+
+    # -- methods -- 
     def createFolder(self) -> None:
         # creates a folder with the name and date of analysis of the filename
 
