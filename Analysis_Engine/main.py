@@ -6,14 +6,18 @@ from imports.unpacme import unpac
 from imports.signature import *
 import os
 
-# since most of the tools are already in REMnux
-REMnuxlink = "https://docs.remnux.org/"
-
-
 # displays the banner on startup
+# (temp)
 def banner() -> None:
     termSize = os.get_terminal_size()
-    print("Some thing here for now")
+    column = termSize[0]
+    lines = termSize[1]
+    print("/") * column
+
+    print("RE_ENGINE")
+
+    print("'\'") * column
+
 
 # run everytime
 # check for complete setup
@@ -42,8 +46,8 @@ def main () -> None:
             
         if (userInput == "scan file"):
             # lookup info about the file
+            # if there is no info then it will scan file
             lookupFile(file)
-            # if there is no info, scan the file
 
         elif (userInput == "scan url"):
             # lookup the url
@@ -54,7 +58,7 @@ def main () -> None:
 
         elif (userInput == "auto"):
 
-        # filename comes from input in the shell
+        # filename comes from the end of the file path
         file = File("test", inputFilePath) 
         lookupFile(file)
 
